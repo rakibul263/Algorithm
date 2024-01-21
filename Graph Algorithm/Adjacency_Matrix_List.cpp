@@ -13,6 +13,7 @@ int main()
         v[a].push_back(b);
         v[b].push_back(a);
     }
+    //value for 0 index
     for (int val : v[0])
     {
         cout << val << " ";
