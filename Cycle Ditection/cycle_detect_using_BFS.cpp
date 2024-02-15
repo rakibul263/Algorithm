@@ -3,7 +3,7 @@ using namespace std;
 const int N = 1e5 + 5;
 vector<int> adj[N];
 bool vis[N];
-int parentArray[N];
+bool parentArray[N];
 bool ans;
 void bfs(int src)
 {
