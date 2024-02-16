@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 1e5 + 5;
-vector<int> adj[N];
 bool vis[N];
-bool parentArray[N];
+vector<int> adj[N];
+int parentArray[N];
 bool ans;
 void dfs(int parent)
 {
@@ -11,14 +11,15 @@ void dfs(int parent)
     // cout << parent << endl;
     for (int child : adj[parent])
     {
-        if (vis[child]==true && parentArray[parent] == child)
+        if (vis[child] == true && child != parentArray[parent])
         {
             ans = true;
+            // cout << parent << " " << child << " " << parentArray[parent] << endl;
         }
-        if (!vis[child])
+        if (vis[child] == false)
         {
-            dfs(child);
             parentArray[child] = parent;
+            dfs(child);
         }
     }
 }
@@ -43,13 +44,9 @@ int main()
             dfs(i);
         }
     }
-    // for (int i = 0; i < n; i++)
-    // {
-    //     cout << parentArray[i] << endl;
-    // }
     if (ans)
-        cout << "Cycle Found" << endl;
+        cout << "Cycle detected";
     else
-        cout << "Cycle Not Found" << endl;
+        cout << "Cycle not detected";
     return 0;
 }
