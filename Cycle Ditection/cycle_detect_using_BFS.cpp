@@ -1,29 +1,30 @@
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 1e5 + 5;
-vector<int> adj[N];
 bool vis[N];
-bool parentArray[N];
+vector<int> adj[N];
+int parentArray[N];
 bool ans;
-void bfs(int src)
+void bfs(int s)
 {
     queue<int> q;
-    q.push(src);
-    vis[src] = true;
+    q.push(s);
+    vis[s] = true;
     while (!q.empty())
     {
-        int par = q.front();
-        // cout << par << endl;
+        int parent = q.front();
+        // cout << parent << endl;
         q.pop();
-        for (int child : adj[par])
+        for (int child : adj[parent])
         {
-            if (vis[child] && parentArray[par] != child)
+            if (vis[child] == true && parentArray[parent] != child)
             {
                 ans = true;
             }
-            if (!vis[child])
+            if (vis[child] == false)
             {
                 vis[child] = true;
+                parentArray[child] = parent;
                 q.push(child);
             }
         }
@@ -51,9 +52,12 @@ int main()
         }
     }
     if (ans)
-        cout << "Cycle Found" << endl;
+    {
+        cout << "Cycle found";
+    }
     else
-        cout << "Cycle Not Found" << endl;
-
+    {
+        cout << "Cycle not found";
+    }
     return 0;
 }
