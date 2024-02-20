@@ -23,7 +23,7 @@ int main()
         cin >> a >> b >> c;
         adj[a][b] = c;
     }
-    cout<<"Before"<<endl;
+    cout << "Before" << endl;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
@@ -42,14 +42,14 @@ int main()
         {
             for (int j = 0; j < n; j++)
             {
-                if(adj[i][k]+adj[k][j]<adj[i][j])
+                if (adj[i][k] + adj[k][j] < adj[i][j])
                 {
-                    adj[i][j]= adj[i][k]+adj[k][j];
+                    adj[i][j] = adj[i][k] + adj[k][j];
                 }
             }
         }
     }
-    cout<<"After"<<endl;
+    cout <<endl<< "After" << endl;
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
@@ -61,6 +61,21 @@ int main()
                 cout << adj[i][j] << " ";
         }
         cout << endl;
+    }
+
+    cout << endl;
+    for (int i = 0; i < n; i++)
+    {
+        if (adj[i][i] < 0)
+        {
+            cout << "Cycle Detected" << endl;
+            break;
+        }
+        else
+        {
+            cout << "Cycle NOT Found" << endl;
+            break;
+        }
     }
 
     return 0;
