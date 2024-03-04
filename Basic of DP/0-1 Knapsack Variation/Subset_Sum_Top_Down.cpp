@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+int dp[1005][1005]; // depends on value of n and s;
 bool subset_sum(int n, int a[], int s)
 {
     // base case
@@ -10,14 +11,19 @@ bool subset_sum(int n, int a[], int s)
         else
             return false;
     }
+    if (dp[n][s] != -1)
+        return dp[n][s];
     if (a[n - 1] <= s)
     {
         bool op_1 = subset_sum(n - 1, a, s - a[n - 1]);
         bool op_2 = subset_sum(n - 1, a, s);
-        return op_1 || op_2;
+        return dp[n][s] = op_1 || op_2;
     }
     else
+    {
         bool op_2 = subset_sum(n - 1, a, s);
+        return dp[n][s] = op_2;
+    }
 }
 int main()
 {
